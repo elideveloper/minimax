@@ -179,16 +179,16 @@ func (b *Board) GetAllPossibleMoves() []Move {
 	return possMoves
 }
 
-func (b *Board) Eval() float64 {
+func (b *Board) Eval() int {
 	if b.IsWin(BotID) {
-		return 1.0
+		return 1000
 	}
 
 	if b.IsWin(UserID) {
-		return -1.0
+		return -1000
 	}
 
-	return 0.0
+	return 0
 }
 
 func (b *Board) GetChildren(isMaximizer bool) []minimax.State {

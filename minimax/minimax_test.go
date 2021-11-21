@@ -20,14 +20,14 @@ func TestMiniMax(t *testing.T) {
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(-1.0)
+							m.On("Eval").Return(-1)
 							t.Log("called -1")
 							return m
 						}(),
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(3.0)
+							m.On("Eval").Return(3)
 							t.Log("called 3")
 							return m
 						}(),
@@ -41,14 +41,14 @@ func TestMiniMax(t *testing.T) {
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(5.0)
+							m.On("Eval").Return(5)
 							t.Log("called 5")
 							return m
 						}(),
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(1.0)
+							m.On("Eval").Return(1)
 							t.Log("called 1")
 							return m
 						}(),
@@ -70,14 +70,14 @@ func TestMiniMax(t *testing.T) {
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(-6.0)
+							m.On("Eval").Return(-6)
 							t.Log("called -6")
 							return m
 						}(),
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(-4.0)
+							m.On("Eval").Return(-4)
 							t.Log("called -4")
 							return m
 						}(),
@@ -91,14 +91,14 @@ func TestMiniMax(t *testing.T) {
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(0.0)
+							m.On("Eval").Return(0)
 							t.Log("called 0")
 							return m
 						}(),
 						func() *StateMock {
 							m := &StateMock{}
 							m.On("GetChildren", false).Return([]State{}) // empty for terminal state
-							m.On("Eval").Return(9.0)
+							m.On("Eval").Return(9)
 							t.Log("called 9")
 							return m
 						}(),
@@ -110,8 +110,7 @@ func TestMiniMax(t *testing.T) {
 		}(),
 	})
 
-	val, _ := minimax(root, minPossibleVal, maxPossibleVal, true, 1)
-	depth := 4
-	needVal := 3.0 / float64(depth)
+	val, _ := minimax(root, minPossibleVal, maxPossibleVal, true, 0)
+	needVal := 3 - 3
 	assert.Equal(t, needVal, val)
 }
