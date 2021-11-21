@@ -21,6 +21,11 @@ func minimax(state State, alpha, beta int, isMaximizer bool, depth uint) (int, S
 		return state.Eval() - int(depth), state
 	}
 
+	// depth=8 is max possible for comfort play
+	// if depth+1 > 8 {
+	// 	return 0, children[0]
+	// }
+
 	var bestState State
 	var bestVal int
 	if isMaximizer {

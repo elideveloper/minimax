@@ -26,8 +26,8 @@ type Board struct {
 	matrix [boardMaxSize][boardMaxSize]int
 }
 
-func NewBoard(size, numToWin uint) *Board {
-	b := &Board{
+func NewBoard(size, numToWin uint) Board {
+	b := Board{
 		size:   size,
 		winNum: numToWin, // for simple games the same as size
 	}
@@ -35,7 +35,7 @@ func NewBoard(size, numToWin uint) *Board {
 	return b
 }
 
-func (b *Board) SetMove(m Move, playerID int) *Board {
+func (b *Board) SetMove(m Move, playerID int) Board {
 	// TODO possible to add validation for emptiness
 
 	nb := *b
@@ -44,7 +44,7 @@ func (b *Board) SetMove(m Move, playerID int) *Board {
 	}
 	nb.matrix[m.X][m.Y] = playerID
 
-	return &nb
+	return nb
 }
 
 func (b *Board) Print() {
@@ -179,7 +179,7 @@ func (b *Board) GetAllPossibleMoves() []Move {
 	return possMoves
 }
 
-func (b *Board) Eval() int {
+func (b Board) Eval() int {
 	if b.IsWin(BotID) {
 		return 1000
 	}
@@ -191,7 +191,7 @@ func (b *Board) Eval() int {
 	return 0
 }
 
-func (b *Board) GetChildren(isMaximizer bool) []minimax.State {
+func (b Board) GetChildren(isMaximizer bool) []minimax.State {
 	if b.Eval() != 0 {
 		// endgame
 		return []minimax.State{}

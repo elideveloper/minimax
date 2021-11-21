@@ -22,7 +22,7 @@ func main() {
 				board = board.SetMove(tictactoe.Move{X: 2, Y: 2}, tictactoe.BotID)
 			} else {
 				// bot is considered as maximizer player
-				board = minimax.FindBestUsingMinimax(board, true).(*tictactoe.Board)
+				board = minimax.FindBestUsingMinimax(board, true).(tictactoe.Board)
 			}
 
 			fmt.Println("\nМой ход!")
