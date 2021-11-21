@@ -6,6 +6,10 @@ import (
 	"github.com/elideveloper/minimax/minimax"
 )
 
+const (
+	boardMaxSize = 5
+)
+
 var (
 	BotID  int = 9
 	UserID int = 3
@@ -19,7 +23,7 @@ type Move struct {
 type Board struct {
 	size   uint
 	winNum uint
-	matrix [][]int
+	matrix [boardMaxSize][boardMaxSize]int
 }
 
 func NewBoard(size, numToWin uint) *Board {
@@ -28,29 +32,19 @@ func NewBoard(size, numToWin uint) *Board {
 		winNum: numToWin, // for simple games the same as size
 	}
 
-	b.matrix = make([][]int, size, size)
-	for i := range b.matrix {
-		b.matrix[i] = make([]int, size, size)
-	}
-
 	return b
 }
 
 func (b *Board) SetMove(m Move, playerID int) *Board {
 	// TODO possible to add validation for emptiness
 
-	nb := NewBoard(b.size, b.winNum)
-	for i := range nb.matrix {
-		for j := range nb.matrix[i] {
-			nb.matrix[i][j] = b.matrix[i][j]
-		}
-	}
+	nb := *b
 	if nb.matrix[m.X][m.Y] != 0 {
 		panic("cannot move!")
 	}
 	nb.matrix[m.X][m.Y] = playerID
 
-	return nb
+	return &nb
 }
 
 func (b *Board) Print() {

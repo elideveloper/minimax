@@ -10,12 +10,12 @@ func TestIsWin(t *testing.T) {
 
 	testCases := []struct {
 		name     string
-		board    [][]int
+		board    [5][5]int
 		plID     int
 		needResp bool
 	}{
 		{
-			board: [][]int{
+			board: [5][5]int{
 				{1, 0, 0, 1, 0},
 				{0, 0, 0, 1, 0},
 				{1, 0, 0, 1, 1},
@@ -26,7 +26,7 @@ func TestIsWin(t *testing.T) {
 			needResp: false,
 		},
 		{
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 1},
 				{0, 0, 0, 0, 1},
 				{0, 0, 0, 1, 1},
@@ -37,7 +37,7 @@ func TestIsWin(t *testing.T) {
 			needResp: false,
 		},
 		{
-			board: [][]int{
+			board: [5][5]int{
 				{0, 1, 0, 1, 1},
 				{0, 1, 0, 1, 1},
 				{0, 1, 0, 0, 1},
@@ -49,7 +49,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "vertical 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 1},
 				{0, 0, 0, 1, 1},
 				{1, 1, 0, 1, 0},
@@ -61,7 +61,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "vertical 5",
-			board: [][]int{
+			board: [5][5]int{
 				{1, 0, 0, 1, 1},
 				{0, 1, 0, 1, 1},
 				{0, 0, 0, 1, 0},
@@ -73,7 +73,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "horizontal 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 0},
 				{0, 1, 1, 1, 1},
 				{1, 0, 0, 1, 1},
@@ -85,7 +85,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag left 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 0},
 				{0, 1, 0, 1, 1},
 				{1, 0, 1, 1, 1},
@@ -97,7 +97,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag right 4",
-			board: [][]int{
+			board: [5][5]int{
 				{1, 0, 0, 1, 1},
 				{0, 1, 0, 0, 1},
 				{0, 0, 1, 1, 0},
@@ -109,7 +109,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag right up 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 1, 0, 1, 1},
 				{0, 1, 1, 0, 1},
 				{0, 0, 1, 1, 0},
@@ -121,7 +121,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag right down 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 1},
 				{1, 1, 1, 0, 1},
 				{0, 1, 0, 0, 0},
@@ -133,7 +133,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag left down 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 1},
 				{1, 0, 1, 0, 1},
 				{0, 1, 0, 1, 0},
@@ -145,7 +145,7 @@ func TestIsWin(t *testing.T) {
 		},
 		{
 			name: "diag left up 4",
-			board: [][]int{
+			board: [5][5]int{
 				{0, 0, 0, 1, 1},
 				{0, 1, 1, 0, 1},
 				{0, 1, 0, 0, 0},
