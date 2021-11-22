@@ -21,9 +21,10 @@ func minimax(state State, alpha, beta float64, isMaximizer bool, depth uint) (fl
 		return state.Eval() / float64(depth), state
 	}
 
-	// if depth+1 > 8 {
-	// 	return 0, children[0]
-	// }
+	// 11 sec time for first move
+	if depth+1 > 8 {
+		return 0, children[0]
+	}
 
 	var bestState State
 	var bestVal float64
