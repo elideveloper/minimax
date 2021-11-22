@@ -1,33 +1,33 @@
 package minimax
 
 const (
-	maxPossibleVal = 999999.0
-	minPossibleVal = -999999.0
+	maxPossibleVal = 999999
+	minPossibleVal = -999999
 )
 
 type State interface {
-	Eval() float64
+	Eval() int
 	GetChildren(isMaximizer bool) []State
 }
 
 func FindBestUsingMinimax(currState State, isMaximizer bool) State {
-	_, bestState := minimax(currState, minPossibleVal, maxPossibleVal, isMaximizer, 1)
+	_, bestState := minimax(currState, minPossibleVal, maxPossibleVal, isMaximizer, 0)
 	return bestState
 }
 
-func minimax(state State, alpha, beta float64, isMaximizer bool, depth uint) (float64, State) {
+func minimax(state State, alpha, beta int, isMaximizer bool, depth uint) (int, State) {
 	children := state.GetChildren(isMaximizer)
 	if len(children) == 0 {
-		return state.Eval() / float64(depth), state
+		return state.Eval() - int(depth), state
 	}
 
-	// 11 sec time for first move
+	// 21 sec time for first move
 	if depth+1 > 8 {
 		return 0, children[0]
 	}
 
 	var bestState State
-	var bestVal float64
+	var bestVal int
 	if isMaximizer {
 		maxVal := minPossibleVal
 		for i, chState := range children {
@@ -67,18 +67,4 @@ func minimax(state State, alpha, beta float64, isMaximizer bool, depth uint) (fl
 	}
 
 	return bestVal, bestState
-}
-
-func max(a, b float64) float64 {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func min(a, b float64) float64 {
-	if a < b {
-		return a
-	}
-	return b
 }
